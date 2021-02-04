@@ -1,0 +1,55 @@
+Partie:
+Classe de la partie qui contient un joueur et un shaker
+	
+	Attributs:
+	NiveauActuel: Le niveau actuel dans lequel il y a un shaker et le joueur.
+
+
+	Méthodes:
+	changerNiveau(): Passer au niveau suivant si le niveau actuel a un son attribut Victoire a True. (affichage d'un pop-up victoire avant)
+	défaite(): Afficher l'écran de fin de partie si le niveau actuel a un son attribut Victoire a False.
+		(- Pour ces 2 méthodes: binding sur attribut Victoire ou simple appel depuis la fonction Victoire ?)
+
+
+
+Niveau:
+Classe du niveau actuel (celui dans lequel est le joueur).
+
+	Attributs:
+	joueurActuel: Le joueur qui utilise le jeu en ce moment même
+	shakerActuel: La shaker qui se trouve dans le niveau dans lequel est le joueur
+	nbMinPts: Entier représentant le nombre de points minimum requis pour passer au niveau supérieur(peut-être moitié des points Max du shaker -> a voir)
+	Victoire: Booléen initialisé a null qui, lorqu'il change, indique si le joueur a gagné ce niveau (dépassé le nombre minimum de points)
+	ptsJoueur: Entier qui correspond aux points que le joueur a obtenu.
+	num: Numéro du niveau.
+
+
+	Méthodes:
+	Points(int tpsjoueur, int tpsshake, int nbMaxPts): Méthode qui calcule le nombre de points du joueur en fonction du temps passé à secouer, du temps du shaker et du max de points du shaker (peut-etre règle de 3 avec les 2 temps et les points -> A voir || si perfect -> p.e sauter un niveau ?)
+	Victoire(): Méthode qui définit l'attribut Victoire. Elle est appelée lorsque le joueur a finit de secouer et que ses points ont été calculé. Si le joueur gagne, on retournera True, sinon False.
+
+
+
+Shaker:
+Classe du shaker de la partie actuelle	
+	
+	Attributs:
+	isFull: Booléen pour savoir si le shaker est full -> si oui, on peux commencer à secouer
+	tpsshake: Entier qui contient le temps pour lequel on obtient le maximum de points
+	nbMaxPts: Entier représentant le nombre de points maximum du shaker
+	
+	
+
+
+Joueur:
+Classe qui contient le joueur et ses informations par rapport à la partie actuelle
+
+	Attributs:
+	isEnAttente: Booléen pour savoir si le joueur peux commencer à secouer -> lié à isFull du shaker
+	tpsjoueur: Entier qui contient le temps de secousse du téléphone par le joueur sur la partie actuelle
+	numNiveau: Entier qui représente le numéro du niveau dans lequel est le joueur.
+
+	Méthodes:
+	Secouer(): Méthode principale qui récupère le temps passé à secouer
+	Recommencer(): Méthode qui permet au joueur de recommencer le niveau actuel si il pense avoir raté. (peut-être mettre un nombre d'essais limités pour chaque niveaux ce qui implique un nouvel attribut dans Joueur ?)
+	

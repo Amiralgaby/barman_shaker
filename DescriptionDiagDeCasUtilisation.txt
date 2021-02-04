@@ -1,0 +1,17 @@
+Joueur:
+Utilisateur de l'application
+
+Jouer:
+scénario de succès:
+	Le joueur appuie sur le bouton "Jouer" au lancement de l'application et le jeu se lance.
+scénario alternatif:
+	Le joueur vient de perdre et il clique sur le bouton "Relancer". Le jeu se relance alors au 1er niveau.
+
+Relancer:
+scénario de succès:
+	Le joueur a lancé une partie qu'il a perdu. Il est alors sur la page de fin de partie. Il clique sur le bouton "Relancer" et le jeu reprend au niveau 1.
+
+
+Quitter:
+scénario de succès: Le joueur appuie sur le bouton "Quitter" et le jeu se ferme.
+
