@@ -15,11 +15,10 @@ public class Partie {
      */
     public void changerNiveau(){
         if (niveau.isVictoire()){
-            lemanager.mémoriser(getNiveau());
+            lemanager.memorize(getNiveau());
             Shaker nvShaker=new Shaker(getNiveau().getNbMinPts()+90);
             this.niveau=new Niveau(niveau.getNbMinPts()+95,niveau.getNumNiveau()+1, niveau.getJoueur(),nvShaker);
         }
-        return;
     }
 
     /**
