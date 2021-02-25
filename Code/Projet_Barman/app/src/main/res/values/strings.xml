@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Projet_Barman</string>
+    <string name="bienvenue">Bienvenue !</string>
+    <string name="lancer_le_jeu">Lancer le jeu</string>
+    <string name="charger_une_partie">Charger une partie</string>
+    <string name="effacer_une_partie">Effacer une partie</string>
+    <string name="temps_faire">Temps à faire:</string>
+    <string name="score_battre">Score à battre:</string>
+    <string name="commencer">Commencer</string>
+    <string name="votre_temps">Votre temps:</string>
+    <string name="votre_score">Votre score:</string>
+    <string name="button">Button</string>
+    <string name="vous_avez_perdu">Vous avez perdu</string>
+    <string name="recommencer">Recommencer</string>
+    <string name="quitter">Quitter</string>
+    <string name="vous_avez_gagn">Vous avez gagné</string>
+    <string name="niveau_suivant">Niveau suivant</string>
 </resources>
