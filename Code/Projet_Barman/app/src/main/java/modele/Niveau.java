@@ -8,7 +8,7 @@ public class Niveau {
     private int nbMinPts;
     private int ptsJoueur;
     private int numNiveau;
-    private boolean Victoire;
+    private boolean victoire;
 
     /**
      * Constructeur du niveau, une partie peut voir se succéder plusieurs niveaux.
@@ -26,13 +26,13 @@ public class Niveau {
 
     public Joueur getJoueur() { return joueur; }
     public Shaker getShaker() { return shaker; }
-    public boolean isVictoire() { return Victoire; }
+    public boolean isVictoire() { return victoire; }
     public int getNumNiveau() { return numNiveau; }
     public int getNbMinPts() { return nbMinPts; }
 
     public void setShaker(Shaker shaker) { this.shaker = shaker; }
     public void setVictoire(boolean victoire) {
-        this.Victoire=victoire;
+        this.victoire=victoire;
         if (!victoire){
             lemanager.getPartieActuelle().defaite();
         }
@@ -46,11 +46,10 @@ public class Niveau {
     public void Victoire(){
         Partie partie=lemanager.getPartieActuelle();
         setVictoire(ptsJoueur>nbMinPts);
-        if(Victoire)
+        if(victoire)
             partie.changerNiveau();
         else
             partie.defaite();
-        return;
     }
 
     /**

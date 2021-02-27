@@ -18,11 +18,15 @@ public class Manager {
 
     public Partie getPartieActuelle() { return partieActuelle; }
 
+    public void setPartieActuelle(Partie partieActuelle) {
+        this.partieActuelle = partieActuelle;
+    }
+
     /**
      * Méthode qui ajoute un niveau a la liste de niveaux terminés.
      * @param niveau= niveau qui vient d'être terminé
      */
-    public void mémoriser(Niveau niveau) {
+    public void memorize(Niveau niveau) {
         listeNiveaux.add(niveau);
     }
 }

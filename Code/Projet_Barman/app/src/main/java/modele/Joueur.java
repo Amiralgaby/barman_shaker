@@ -49,7 +49,7 @@ public class Joueur {
     /**
      * Méthode qui se lance en cas d'abandon du joueur (possibilité de quitter). Déclenche la fonction défaite de la partie et fait reprendre le joueur au niveau 1.
      */
-    public void Recommencer(){
+    public void recommencer(){
         lemanager.getPartieActuelle().getNiveau().setVictoire(false);
     }
 
