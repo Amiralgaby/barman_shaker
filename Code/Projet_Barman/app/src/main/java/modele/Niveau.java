@@ -1,7 +1,6 @@
 package modele;
 
 public class Niveau {
-    private Joueur joueur;
     private Shaker shaker;
     private Manager lemanager= Manager.getInstance();
 
@@ -14,23 +13,20 @@ public class Niveau {
      * Constructeur du niveau, une partie peut voir se succéder plusieurs niveaux.
      * @param nbMinPts= Nombre de points minimum resuiq pour passer au niveau suivant
      * @param numNiveau=Numéro du niveau actuel
-     * @param joueur=Joueur actuel sur le jeu
      * @param shaker=Shaker du niveau actuel
      */
-    public Niveau(int nbMinPts,int numNiveau, Joueur joueur, Shaker shaker) {
-        this.nbMinPts=nbMinPts;
-        this.numNiveau=numNiveau;
-        this.joueur=joueur;
-        this.shaker=shaker;
+    public Niveau(int nbMinPts, int numNiveau, Shaker shaker) {
+        this.nbMinPts = nbMinPts;
+        this.numNiveau = numNiveau;
+        this.shaker = shaker;
+        victoire = false;
     }
 
-    public Joueur getJoueur() { return joueur; }
     public Shaker getShaker() { return shaker; }
     public boolean isVictoire() { return victoire; }
     public int getNumNiveau() { return numNiveau; }
     public int getNbMinPts() { return nbMinPts; }
 
-    public void setShaker(Shaker shaker) { this.shaker = shaker; }
     public void setVictoire(boolean victoire) {
         this.victoire=victoire;
         if (!victoire){
@@ -43,7 +39,7 @@ public class Niveau {
     /**
      * Méthode qui est appelé après le calcul des points. Déclare la victoire ou non du joueur.
      */
-    public void Victoire(){
+    public void victoire(){
         Partie partie=lemanager.getPartieActuelle();
         setVictoire(ptsJoueur>nbMinPts);
         if(victoire)
@@ -58,10 +54,10 @@ public class Niveau {
      * @param nbMaxPoints
      * @param tpsshake
      */
-    public void Pts(int tpsjoueur, int nbMaxPoints, int tpsshake){
+    public void pts(int tpsjoueur, int nbMaxPoints, int tpsshake){
         int pts=(tpsjoueur*nbMaxPoints)/tpsshake;
         setPtsJoueur(pts);
-        Victoire();
+        victoire();
     }
 
 

@@ -2,7 +2,7 @@ package modele;
 
 public class Partie {
     private Niveau niveau;
-    private Manager lemanager=Manager.getInstance();
+    private final Manager lemanager = Manager.getInstance();
 
     public Partie(Niveau niveau){
         this.niveau=niveau;
@@ -16,22 +16,18 @@ public class Partie {
     public void changerNiveau(){
         if (niveau.isVictoire()){
             lemanager.memorize(getNiveau());
-            Shaker nvShaker=new Shaker(getNiveau().getNbMinPts()+90);
-            this.niveau=new Niveau(niveau.getNbMinPts()+95,niveau.getNumNiveau()+1, niveau.getJoueur(),nvShaker);
+            this.niveau= FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
         }
     }
 
     /**
      * Méthode appelée en cas d'abandon du joueur ou en cas de défaite (ptsjoueur<ptsNiveauSuivant)
-     * @return si la défaite a bien été comptabilisée
      */
-    public boolean defaite(){
+    public void defaite(){
         if (!niveau.isVictoire()){
             Shaker shaker=new Shaker(1000);
-            this.niveau=new Niveau(700,1,niveau.getJoueur(),shaker);
-            return true;
+            this.niveau=FabriqueNiveau.fabriquer(1);
         }
 
-        return false;
     }
 }

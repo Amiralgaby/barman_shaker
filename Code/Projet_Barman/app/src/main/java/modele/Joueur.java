@@ -25,7 +25,7 @@ public class Joueur {
     public Joueur(String nom) {
         this.nom=nom;
         // Niveau 1 + Shaker de base pour le premier niveau (valeurs a tester plus tard)
-        this.niveauActuel=new Niveau(700,1,this,new Shaker(1000));
+        this.niveauActuel=FabriqueNiveau.fabriquer(1);
     }
 
     public void setTpsjoueur(int tpsjoueur) { this.tpsjoueur = tpsjoueur; }
@@ -41,7 +41,7 @@ public class Joueur {
         // 10 = valeur a changer par le temps réel du joueur.
         setTpsjoueur(10);
         Shaker shaker=niveauActuel.getShaker();
-        lemanager.getPartieActuelle().getNiveau().Pts(tpsjoueur,shaker.getMaxpts(),shaker.getTpsshake());
+        lemanager.getPartieActuelle().getNiveau().pts(tpsjoueur,shaker.getMaxpts(),shaker.getTpsshake());
         //return le tps.
         return 10;
     }
