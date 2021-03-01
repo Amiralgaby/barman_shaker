@@ -38,7 +38,7 @@ public class SensorActivity extends Activity implements SensorEventListener {
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        System.out.println("accuray changed");
+        Log.d("ON_SENSOR_CHANGED","do something");
     }
 
 }
