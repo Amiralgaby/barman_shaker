@@ -9,7 +9,6 @@ import android.util.Log;
 public class SensorController implements SensorEventListener {
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
-    private final float[] gravity = new float[3];
 
     public SensorController(SensorManager manager)
     {
@@ -35,7 +34,6 @@ public class SensorController implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         // pour obtenir la valeur faire event.values[1]
-        //calcul(event);
         Log.d("CALCUL", "la valeur y : " + event.values[1]);
     }
 

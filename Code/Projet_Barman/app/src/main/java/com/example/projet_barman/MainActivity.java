@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void demarrer(View view) {
-        //setContentView(R.layout.page_jeu);
         Intent intent = new Intent(this,JeuActivity.class);
         startActivity(intent);
     }

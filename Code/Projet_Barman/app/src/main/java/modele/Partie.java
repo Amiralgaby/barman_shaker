@@ -25,7 +25,6 @@ public class Partie {
      */
     public void defaite(){
         if (!niveau.isVictoire()){
-            Shaker shaker=new Shaker(1000);
             this.niveau=FabriqueNiveau.fabriquer(1);
         }
 
