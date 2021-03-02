@@ -1,7 +1,7 @@
 package com.example.projet_barman;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void demarrer(View view) {
-        setContentView(R.layout.page_jeu);
+        //setContentView(R.layout.page_jeu);
+        Intent intent = new Intent(this,JeuActivity.class);
+        startActivity(intent);
     }
 
     public void jouer(View view) {

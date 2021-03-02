@@ -21,7 +21,6 @@ public class SensorController implements SensorEventListener {
             Log.d("ERROR","Il n'y a pas d'accéléromètre sur votre téléphone !");
             unregister();
         }
-        Log.d("ON_SENSOR_CHANGED","please do something");
     }
 
     public void register() {
@@ -34,11 +33,10 @@ public class SensorController implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        System.out.println("onSensorChanged : " + event.values[1] + event.sensor.getName());
-        Log.d("ON_SENSOR_CHANGED","please do something");
+        // pour obtenir la valeur faire event.values[1]
+
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        Log.d("ON_SENSOR_CHANGED","do something");
     }
 }
