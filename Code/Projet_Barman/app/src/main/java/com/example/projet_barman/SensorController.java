@@ -12,6 +12,11 @@ import android.util.Log;
 public class SensorController implements SensorEventListener {
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
+    private boolean registered=false;
+    private long debut;
+    private boolean secouage= false;
+    private long fin;
+    private boolean started=false;
 
     /**
      * Créer une instance de SensorController qui gère les envents et les contrôles de l'accéléromètre et du manager de sensor
@@ -23,7 +28,7 @@ public class SensorController implements SensorEventListener {
         int accelerometer = Sensor.TYPE_LINEAR_ACCELERATION; // meilleur que Sensor.TYPE_ACCELEROMETER car ne prend pas en compte la gravité
         if ((mAccelerometer = mSensorManager.getDefaultSensor(accelerometer)) != null){
             Log.d("DEBUG","Il y a bien un accéléromètre sur votre téléphone");
-            register();
+            //register();
         } else {
             Log.d("ERROR","Il n'y a pas d'accéléromètre sur votre téléphone !");
             unregister();
@@ -33,25 +38,44 @@ public class SensorController implements SensorEventListener {
     /**
      * Ajoute this en tant que listener de l'accélèromètre via le manager de sensor
      */
-    public void register() {
-        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    public boolean register() {
+        return registered=mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
      * Retire le listener this du manager de sensor
      */
-    public void unregister() {
-        mSensorManager.unregisterListener(this);
+    public boolean unregister() {
+        if(!register()) {
+            registered=false;
+            mSensorManager.unregisterListener(this);
+            return true;
+        }
+        return false;
+
     }
 
+
+
     /**
-     * Appelée lorsque qu'il y a un nouvel envent
+     * Appelée lorsque qu'il y a un nouvel event
      * @param event le sensor event
      */
     @Override
     public void onSensorChanged(SensorEvent event) {
         // pour obtenir la valeur faire event.values[1]
-        Log.d("DONNEES", "la valeur y : " + event.values[1]);
+        Log.d("DONNEESY", "la valeur y : " + event.values[1]);
+        Log.d("Secouage", "Suis-je secoué ? " + secouage);
+        debut=event.timestamp;
+        if ((!secouage) && (event.values[0]<-1 || event.values[0]>1 || event.values[1]<-1 || event.values[1]>1 || event.values[2]<-1 || event.values[2]>1)){
+            Log.d("Secouage", "Je suis secoué !");
+            secouage=true;
+        }
+
+        if (started && (event.values[0]<1 && event.values[0]>-1) && (event.values[1]<1 && event.values[1]>-1) && (event.values[2]<1 && event.values[2]>-1)) {
+            fin = event.timestamp;
+            unregister();
+        }
     }
 
     /**
@@ -65,4 +89,10 @@ public class SensorController implements SensorEventListener {
         // ne fait actuellement rien
     }
 
+
+    public boolean getRegistered() { return registered; }
+    public long getDebut() { return debut; }
+    public boolean getSecouage() { return secouage; }
+    public long getFin() { return fin; }
+    public void setStarted(boolean started){ this.started=started;}
 }
