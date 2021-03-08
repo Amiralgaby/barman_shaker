@@ -54,8 +54,8 @@ public class Niveau {
      * @param nbMaxPoints
      * @param tpsshake
      */
-    public void pts(int tpsjoueur, int nbMaxPoints, int tpsshake){
-        int pts=(tpsjoueur*nbMaxPoints)/tpsshake;
+    public void pts(int tpsjoueur, int nbMaxPoints, long tpsshake){
+        int pts=(tpsjoueur*nbMaxPoints)/(int)tpsshake;
         setPtsJoueur(pts);
         victoire();
     }
