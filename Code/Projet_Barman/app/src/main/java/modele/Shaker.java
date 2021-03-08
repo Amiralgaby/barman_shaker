@@ -1,10 +1,9 @@
 package modele;
 
-import java.util.Random;
-
 public class Shaker {
-    private boolean full=false;
-    private int tpsshake;
+
+    private float secouage_accumule = 0;
+    private long tpsshake = 0;
     private int maxpts;
 
     /**
@@ -13,12 +12,21 @@ public class Shaker {
      */
     public Shaker(int maxpts) {
         this.maxpts=maxpts;
-        //Temps de secouage entre 1 et 10 sec.
-        Random rand = new Random();
-        this.tpsshake=rand.nextInt(9)+1;
     }
 
     public int getMaxpts() { return maxpts; }
 
-    public int getTpsshake() { return tpsshake; }
+    /**
+     * obtenir le temps durant lequel le shacker fut secoué
+     * @return le temp de secouage en nanosecondes
+     */
+    public long getTpsshake() { return tpsshake; }
+
+    public void ajouteTps(long timestamp) {
+        tpsshake += timestamp;
+    }
+
+    public void ajouteSecouage(float secouage_accumule) {
+        this.secouage_accumule += secouage_accumule;
+    }
 }

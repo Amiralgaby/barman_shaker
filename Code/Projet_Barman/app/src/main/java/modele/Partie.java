@@ -27,6 +27,5 @@ public class Partie {
         if (!niveau.isVictoire()){
             this.niveau=FabriqueNiveau.fabriquer(1);
         }
-
     }
 }
