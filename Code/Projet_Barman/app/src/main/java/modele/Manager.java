@@ -10,29 +10,23 @@ import com.example.projet_barman.PartieController;
 import java.util.ArrayList;
 
 public class Manager {
-    private PartieController partieController;
+    private PartieController partieController = new PartieController();;
     private ArrayList<Niveau> listeNiveaux = new ArrayList<>();
     private SensorManager sensorManager;
 
     /**
      * (seule) Instance de manager.
      */
-    private static Manager INSTANCE;
+    private static Manager INSTANCE = new Manager();
 
     /**
      * @return l'instance du manager
      */
     public static  Manager getInstance() {
-        return (INSTANCE != null) ? INSTANCE : new Manager();
+        return INSTANCE;
     }
 
     public Partie getPartieActuelle() { return partieController.getPartieActuelle(); }
-
-    public Manager()
-    {
-        INSTANCE = this;
-        partieController = new PartieController();
-    }
 
     public void lancerLeJeu()
     {

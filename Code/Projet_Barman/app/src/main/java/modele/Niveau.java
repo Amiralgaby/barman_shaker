@@ -2,7 +2,6 @@ package modele;
 
 public class Niveau {
     private Shaker shaker;
-    private Manager lemanager= Manager.getInstance();
 
     private int nbMinPts;
     private int ptsJoueur;
@@ -30,7 +29,7 @@ public class Niveau {
     public void setVictoire(boolean victoire) {
         this.victoire=victoire;
         if (!victoire){
-            lemanager.getPartieActuelle().defaite();
+            Manager.getInstance().getPartieActuelle().defaite();
         }
     }
 
@@ -40,7 +39,7 @@ public class Niveau {
      * Méthode qui est appelé après le calcul des points. Déclare la victoire ou non du joueur.
      */
     public void victoire(){
-        Partie partie=lemanager.getPartieActuelle();
+        Partie partie=Manager.getInstance().getPartieActuelle();
         setVictoire(ptsJoueur>nbMinPts);
         if(victoire)
             partie.changerNiveau();

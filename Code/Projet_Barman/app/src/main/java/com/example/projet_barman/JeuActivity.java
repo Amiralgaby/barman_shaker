@@ -14,8 +14,6 @@ public class JeuActivity extends AppCompatActivity {
 
     Manager manager = Manager.getInstance();
 
-    private SensorController sensorController;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

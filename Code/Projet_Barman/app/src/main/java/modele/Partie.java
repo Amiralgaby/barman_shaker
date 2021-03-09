@@ -2,7 +2,6 @@ package modele;
 
 public class Partie {
     private Niveau niveau;
-    private final Manager lemanager = Manager.getInstance();
 
     public Partie(Niveau niveau){
         this.niveau=niveau;
@@ -15,7 +14,7 @@ public class Partie {
      */
     public void changerNiveau(){
         if (niveau.isVictoire()){
-            lemanager.memorize(getNiveau());
+            Manager.getInstance().memorize(getNiveau());
             this.niveau= FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
         }
     }
