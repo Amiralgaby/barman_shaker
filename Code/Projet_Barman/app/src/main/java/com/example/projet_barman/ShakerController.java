@@ -3,6 +3,7 @@ package com.example.projet_barman;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -30,8 +31,12 @@ public class ShakerController implements SensorEventListener {
      */
     @Override
     public void onSensorChanged(SensorEvent event) {
-        shacker.ajouteTps(event.timestamp);
-        shacker.ajouteSecouage(event.values[1]);
+        float value_y = Math.abs(event.values[1]);
+        if (value_y >= 1){
+            shacker.ajouteTps(event.timestamp);
+            Log.d("TIMESTAMP","voici le temps "+event.timestamp);
+            shacker.ajouteSecouage(value_y); // augmente la valeur accumuler de secouage du shaker
+        }
     }
 
     /*

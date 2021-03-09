@@ -30,6 +30,6 @@ public class Shaker {
 
     public void ajouteSecouage(float secouage_accumule) {
         this.secouage_accumule += secouage_accumule;
-        Log.d("SECOUE_ACUMMULATION","ajout de "+secouage_accumule+" au secouage");
+        Log.d("SECOUE_ACUMMULATION","secouage vaut "+this.secouage_accumule);
     }
 }

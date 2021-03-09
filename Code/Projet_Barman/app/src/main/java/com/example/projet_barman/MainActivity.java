@@ -6,9 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import modele.FabriqueNiveau;
 import modele.Manager;
-import modele.Partie;
 
 public class MainActivity extends AppCompatActivity {
     Manager manager=Manager.getInstance();
@@ -17,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Partie partieActuelle = new Partie(FabriqueNiveau.fabriquer(1));
-        manager.setPartieActuelle(partieActuelle);
     }
 
     public void demarrer(View view) {
@@ -26,7 +22,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void jouer(View view) {
-
-    }
 }

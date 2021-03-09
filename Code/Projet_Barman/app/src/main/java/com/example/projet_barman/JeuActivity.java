@@ -8,9 +8,13 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import modele.FabriqueNiveau;
 import modele.Manager;
+import modele.Partie;
 
 public class JeuActivity extends AppCompatActivity {
+
+    Manager manager = Manager.getInstance();
 
     private SensorController sensorController;
 
@@ -20,6 +24,8 @@ public class JeuActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sensorController = new SensorController((SensorManager)getSystemService(Context.SENSOR_SERVICE));
+        Partie partieActuelle = new Partie(FabriqueNiveau.fabriquer(1));
+        manager.setPartieActuelle(partieActuelle);
         setContentView(R.layout.page_jeu);
     }
 

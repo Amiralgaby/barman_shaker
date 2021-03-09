@@ -3,6 +3,7 @@ package com.example.projet_barman;
 import android.hardware.Sensor;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.SystemClock;
 import android.util.Log;
 
 /**
@@ -12,6 +13,8 @@ public class SensorController {
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
     private boolean registered=false;
+    private long debut_register;
+    private long temp_passe_a_register = 0;
 
     /**
      * Créer une instance de SensorController qui gère les listeners du sensor
@@ -32,17 +35,26 @@ public class SensorController {
      * Ajoute this en tant que listener de l'accélèromètre via le manager de sensor
      */
     public boolean register(SensorEventListener sensorEventListener) {
+        debut_register = SystemClock.elapsedRealtime();
         return registered = mSensorManager.registerListener(sensorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
      * Retire le listener this du manager de sensor
      */
-    public boolean unregister(SensorEventListener sensorEventListener) {
+    public void unregister(SensorEventListener sensorEventListener) {
            mSensorManager.unregisterListener(sensorEventListener);
            registered = false;
-           return true;
+           temp_passe_a_register = debut_register - SystemClock.elapsedRealtime();
     }
 
     public boolean getRegistered() { return registered; }
+
+    public long getDebut_register() {
+        return debut_register;
+    }
+
+    public long getTemp_passe_a_register() {
+        return temp_passe_a_register;
+    }
 }
