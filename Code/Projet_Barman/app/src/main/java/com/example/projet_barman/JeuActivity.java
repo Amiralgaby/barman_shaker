@@ -8,9 +8,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import modele.FabriqueNiveau;
 import modele.Manager;
-import modele.Partie;
 
 public class JeuActivity extends AppCompatActivity {
 
@@ -18,23 +16,15 @@ public class JeuActivity extends AppCompatActivity {
 
     private SensorController sensorController;
 
-    private final ShakerController shakerController = new ShakerController();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sensorController = new SensorController((SensorManager)getSystemService(Context.SENSOR_SERVICE));
-        Partie partieActuelle = new Partie(FabriqueNiveau.fabriquer(1));
-        manager.setPartieActuelle(partieActuelle);
         setContentView(R.layout.page_jeu);
+        manager.setSensorManager((SensorManager)getSystemService(Context.SENSOR_SERVICE));
     }
 
     public void jouer(View view) {
-        // On set le shacker qui sera utilisé par le sensorEventListener pour le "mettre à jour" selon les events
-        shakerController.setShaker(Manager.getInstance().getPartieActuelle().getNiveau().getShaker());
-        //On s'enregistre + on prend le temps de l'appuie sur le bouton
-        sensorController.register(shakerController);
-        // TODO -- On laisse au joueur 4sec pour se mettre en position. Si il décide de commencer avant, il peut
+        manager.lancerLeJeu();
     }
 
     /**
@@ -43,7 +33,7 @@ public class JeuActivity extends AppCompatActivity {
      */
     @Override
     protected void onPause() {
-        sensorController.unregister(shakerController);
+        manager.seMettreEnpause();
         super.onPause();
     }
 }
