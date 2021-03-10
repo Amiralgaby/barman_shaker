@@ -1,7 +1,5 @@
 package modele;
 
-import android.util.Log;
-
 public class Shaker {
 
     private float secouage_accumule = 0;
@@ -30,6 +28,6 @@ public class Shaker {
 
     public void ajouteSecouage(float secouage_accumule) {
         this.secouage_accumule += secouage_accumule;
-        Log.d("SECOUE_ACUMMULATION","secouage vaut "+this.secouage_accumule);
+        //Log.d("SECOUE_ACUMMULATION","secouage vaut "+this.secouage_accumule);
     }
 }
