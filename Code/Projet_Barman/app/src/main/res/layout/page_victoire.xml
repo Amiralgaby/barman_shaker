@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#7B6F6F">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#7B6F6F"
+    tools:context=".VictoireActivity">
 
     <TextView
         android:id="@+id/textView7"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/niveau_suivant"
+        android:onClick="niveauSuivant"
         android:textColor="#000000"
         app:backgroundTint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +43,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/quitter"
         android:textColor="#000000"
+        android:onClick="Quitter"
         app:backgroundTint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
