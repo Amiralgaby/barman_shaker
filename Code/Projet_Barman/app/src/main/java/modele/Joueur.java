@@ -31,22 +31,6 @@ public class Joueur {
     public void setTpsjoueur(int tpsjoueur) { this.tpsjoueur = tpsjoueur; }
 
     /**
-     * Méthode qui récupère le temps passer à secouer par le joueur
-     * @return Les points du joueur après avoir secoué
-     */
-    public int secouer(){
-        if (!enAttente){
-            //On secoue et on récupère le temps en secondes
-        }
-        // 10 = valeur a changer par le temps réel du joueur.
-        setTpsjoueur(10);
-        Shaker shaker=niveauActuel.getShaker();
-        lemanager.getPartieActuelle().getNiveau().pts(tpsjoueur,shaker.getMaxpts(),shaker.getTpsshake());
-        //return le tps.
-        return 10;
-    }
-
-    /**
      * Méthode qui se lance en cas d'abandon du joueur (possibilité de quitter). Déclenche la fonction défaite de la partie et fait reprendre le joueur au niveau 1.
      */
     public void recommencer(){

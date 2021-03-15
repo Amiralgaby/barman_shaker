@@ -9,8 +9,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import java.util.concurrent.ExecutionException;
-
 import modele.FabriqueNiveau;
 import modele.Partie;
 
@@ -73,8 +71,12 @@ public class PartieController implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (debut == 0 && running) debut = SystemClock.elapsedRealtime(); // défini le timestamp de début de jeu
+
         float value_y = Math.abs(event.values[1]); // facilite la suite
-        if (value_y >= 1) running = true; // le jeu commence uniquement si le joueur secoue
+        if (value_y >= 1){
+            running = true; // le jeu commence uniquement si le joueur secoue
+            JeuActivity.setTemps(String.valueOf( (SystemClock.elapsedRealtime()-debut)/1000.0) );
+        }
         if (value_y < 1 && running) // condition de fin
         {
             fin = SystemClock.elapsedRealtime();
@@ -83,6 +85,7 @@ public class PartieController implements SensorEventListener {
     }
 
     private void finDePartie() {
+        if (!running) return;
         fin = SystemClock.elapsedRealtime();
         running = false; // quand appelé oblige la partie controller à ne pas tourner
         sensorController.unregister(shakerController);
@@ -91,6 +94,17 @@ public class PartieController implements SensorEventListener {
         long ecart_milli = fin - debut;
         Log.d("SCORE","Vous avez commencé à "+ debut + " et vous avez terminé à "+ fin);
         Log.d("SCORE", "Vous avez secoué durant : " + ecart_milli + " nanosecondes soit "+ecart_milli/(1000.0));
+        //JeuActivity.setScore(String.valueOf(calculDuScore(SystemClock.elapsedRealtime()-debut)));
+    }
+
+    private long calculDuScore(long ecartMilli) {
+        try{
+            partieActuelle.getNiveau().pts(ecartMilli);
+        }catch (ArithmeticException e)
+        {
+            Log.d("ARITHMETIC_ERROR",e.getMessage());
+        }
+        return partieActuelle.getNiveau().getPtsJoueur();
     }
 
     @Override

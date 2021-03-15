@@ -4,7 +4,7 @@ public class Niveau {
     private Shaker shaker;
 
     private int nbMinPts;
-    private int ptsJoueur;
+    private long ptsJoueur = 0;
     private int numNiveau;
     private boolean victoire;
 
@@ -33,7 +33,7 @@ public class Niveau {
         }
     }
 
-    public void setPtsJoueur(int ptsJoueur) { this.ptsJoueur = ptsJoueur; }
+    public void setPtsJoueur(long ptsJoueur) { this.ptsJoueur = ptsJoueur; }
 
     /**
      * Méthode qui est appelé après le calcul des points. Déclare la victoire ou non du joueur.
@@ -50,14 +50,14 @@ public class Niveau {
     /**
      * Méthode qui est appelé une fois que le joueur a finit de secouer pour calculer son nombre de points
      * @param tpsjoueur
-     * @param nbMaxPoints
-     * @param tpsshake
      */
-    public void pts(int tpsjoueur, int nbMaxPoints, long tpsshake){
-        int pts=(tpsjoueur*nbMaxPoints)/(int)tpsshake;
+    public void pts(long tpsjoueur) throws ArithmeticException{
+        long pts=(tpsjoueur*shaker.getMaxpts())/shaker.getTpsshake();
         setPtsJoueur(pts);
         victoire();
     }
 
-
+    public long getPtsJoueur() {
+        return ptsJoueur;
+    }
 }
