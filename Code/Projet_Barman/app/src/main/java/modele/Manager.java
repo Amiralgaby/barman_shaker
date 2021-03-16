@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.projet_barman.OnGameUpdatedListener;
 import com.example.projet_barman.PartieController;
 
 import java.util.ArrayList;
@@ -55,5 +56,13 @@ public class Manager {
      */
     public void seMettreEnpause() {
         partieController.mettreLaPartieEnPause();
+    }
+
+    /**
+     * Set le OnGameUpdateListener qui sera utilisé pour réalisé l'affichage
+     * @param listener le listener à utilisé
+     */
+    public void setJeuActivity(OnGameUpdatedListener listener) {
+        partieController.setListener(listener);
     }
 }

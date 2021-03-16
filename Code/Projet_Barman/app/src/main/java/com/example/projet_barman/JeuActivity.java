@@ -1,41 +1,29 @@
 package com.example.projet_barman;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import modele.Manager;
 
-public class JeuActivity extends AppCompatActivity {
+public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListener {
 
     Manager manager = Manager.getInstance();
 
-    @SuppressLint("StaticFieldLeak")
-    public static TextView votreTemps;
+    private TextView votreTemps;
 
-    @SuppressLint("StaticFieldLeak")
-    public static TextView votreScore;
-
-    public static void setScore(String score) {
-        votreScore.setText(score);
-    }
-
-    public static void setTemps(String temps) {
-        votreTemps.setText(temps);
-    }
+    private TextView votreScore;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_jeu);
         manager.setSensorManager((SensorManager)getSystemService(Context.SENSOR_SERVICE));
+        manager.setJeuActivity(this);
         votreTemps = findViewById(R.id.votre_temps);
         votreScore = findViewById(R.id.votre_score);
     }
@@ -52,5 +40,23 @@ public class JeuActivity extends AppCompatActivity {
     protected void onPause() {
         manager.seMettreEnpause();
         super.onPause();
+    }
+
+    /**
+     * Utilise un nouveau thread qui permet de set le score dans la textview prévu à cet effet
+     * @param score le score à écrire dans la textview
+     */
+    @Override
+    public void updateScore(String score) {
+        runOnUiThread(() -> votreScore.setText(score));
+    }
+
+    /**
+     * Utilise un ouveau thread qui permet de set le temps dans la textview prévu à cet effet
+     * @param temps le temps à écrire dans la textview
+     */
+    @Override
+    public void updateTemps(String temps) {
+        runOnUiThread(() -> votreTemps.setText(temps));
     }
 }

@@ -26,35 +26,22 @@ public class Niveau {
     public int getNumNiveau() { return numNiveau; }
     public int getNbMinPts() { return nbMinPts; }
 
-    public void setVictoire(boolean victoire) {
-        this.victoire=victoire;
-        if (!victoire){
-            Manager.getInstance().getPartieActuelle().defaite();
-        }
-    }
-
-    public void setPtsJoueur(long ptsJoueur) { this.ptsJoueur = ptsJoueur; }
-
     /**
      * Méthode qui est appelé après le calcul des points. Déclare la victoire ou non du joueur.
      */
-    public void victoire(){
+    public void setVictoire(){
         Partie partie=Manager.getInstance().getPartieActuelle();
-        setVictoire(ptsJoueur>nbMinPts);
-        if(victoire)
-            partie.changerNiveau();
-        else
-            partie.defaite();
+        victoire = (ptsJoueur>nbMinPts);
+        partie.continuerAJouer();
     }
 
     /**
      * Méthode qui est appelé une fois que le joueur a finit de secouer pour calculer son nombre de points
-     * @param tpsjoueur
+     * @param tpsjoueur le temps qu'a réalisé le joueur provenant de PartieController
      */
     public void pts(long tpsjoueur) throws ArithmeticException{
-        long pts=(tpsjoueur*shaker.getMaxpts())/shaker.getTpsshake();
-        setPtsJoueur(pts);
-        victoire();
+        ptsJoueur = (tpsjoueur*shaker.getMaxpts())/shaker.getTpsshake();
+        setVictoire();
     }
 
     public long getPtsJoueur() {

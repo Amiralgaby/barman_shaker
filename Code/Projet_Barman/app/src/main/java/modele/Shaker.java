@@ -1,8 +1,11 @@
 package modele;
 
+/**
+ * Modèle du Shaker qui contient les données utilisées pour le calcul de réussite du niveau
+ */
 public class Shaker {
 
-    private float secouage_accumule = 0;
+    private float secouageAccumule = 0;
     private long tpsshake = 0;
     private int maxpts;
 
@@ -22,12 +25,28 @@ public class Shaker {
      */
     public long getTpsshake() { return tpsshake; }
 
+    /**
+     * ajoute le timestamp au temps de shake
+     * @param timestamp le timestamp à ajouter
+     */
     public void ajouteTps(long timestamp) {
         tpsshake += timestamp;
     }
 
-    public void ajouteSecouage(float secouage_accumule) {
-        this.secouage_accumule += secouage_accumule;
+    /**
+     * ajoute la valeur passée en paramètre
+     * @param secouageAccumule la valeur de secouage à ajouter
+     */
+    public void ajouteSecouage(float secouageAccumule) {
+        this.secouageAccumule += secouageAccumule;
         //Log.d("SECOUE_ACUMMULATION","secouage vaut "+this.secouage_accumule);
+    }
+
+    /**
+     * obtenir le secouage accumulé du shaker
+     * @return la valeur de secouage du shaker
+     */
+    public float getSecouageAccumule() {
+        return secouageAccumule;
     }
 }

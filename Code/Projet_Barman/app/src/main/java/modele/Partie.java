@@ -1,5 +1,8 @@
 package modele;
 
+/**
+ * le modèle de la partie contenant le niveau qui est joué par le joueur
+ */
 public class Partie {
     private Niveau niveau;
 
@@ -11,19 +14,14 @@ public class Partie {
 
     /**
      * Méthode qui passe au niveau suivant si le joueur a gagné le niveau actuel.
+     * sinon le renvoie au niveau 1
+     * la partie n'est pas relancée, juste reconfigurée
      */
-    public void changerNiveau(){
+    public void continuerAJouer(){
         if (niveau.isVictoire()){
             Manager.getInstance().memorize(getNiveau());
             this.niveau= FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
-        }
-    }
-
-    /**
-     * Méthode appelée en cas d'abandon du joueur ou en cas de défaite (ptsjoueur<ptsNiveauSuivant)
-     */
-    public void defaite(){
-        if (!niveau.isVictoire()){
+        }else{
             this.niveau=FabriqueNiveau.fabriquer(1);
         }
     }

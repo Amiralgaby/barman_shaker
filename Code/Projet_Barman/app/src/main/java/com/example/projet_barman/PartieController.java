@@ -15,6 +15,7 @@ import modele.Partie;
 public class PartieController implements SensorEventListener {
 
     private SensorController sensorController;
+    private OnGameUpdatedListener listener;
     private Partie partieActuelle;
     private long debut = 0;
 
@@ -75,7 +76,7 @@ public class PartieController implements SensorEventListener {
         float value_y = Math.abs(event.values[1]); // facilite la suite
         if (value_y >= 1){
             running = true; // le jeu commence uniquement si le joueur secoue
-            JeuActivity.setTemps(String.valueOf( (SystemClock.elapsedRealtime()-debut)/1000.0) );
+            listener.updateTemps(String.valueOf( (SystemClock.elapsedRealtime()-debut)/1000.0) );
         }
         if (value_y < 1 && running) // condition de fin
         {
@@ -94,7 +95,7 @@ public class PartieController implements SensorEventListener {
         long ecart_milli = fin - debut;
         Log.d("SCORE","Vous avez commencé à "+ debut + " et vous avez terminé à "+ fin);
         Log.d("SCORE", "Vous avez secoué durant : " + ecart_milli + " nanosecondes soit "+ecart_milli/(1000.0));
-        //JeuActivity.setScore(String.valueOf(calculDuScore(SystemClock.elapsedRealtime()-debut)));
+        listener.updateScore(String.valueOf(calculDuScore(SystemClock.elapsedRealtime()-debut)));
     }
 
     private long calculDuScore(long ecartMilli) {
@@ -110,5 +111,9 @@ public class PartieController implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // do nothing
+    }
+
+    public void setListener(OnGameUpdatedListener activity) {
+        listener = activity;
     }
 }
