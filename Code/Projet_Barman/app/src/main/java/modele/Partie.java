@@ -18,11 +18,12 @@ public class Partie {
      * la partie n'est pas relancée, juste reconfigurée
      */
     public void continuerAJouer(){
+        /* TODO -- le niveau change directement on peut faire autrement, voir si obtenir directement les points du joueur avec la méthode pts de Niveau */
         if (niveau.isVictoire()){
             Manager.getInstance().memorize(getNiveau());
-            this.niveau= FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
+            //this.niveau= FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
         }else{
-            this.niveau=FabriqueNiveau.fabriquer(1);
+            //this.niveau=FabriqueNiveau.fabriquer(1);
         }
     }
 }

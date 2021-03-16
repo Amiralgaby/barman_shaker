@@ -1,5 +1,7 @@
 package modele;
 
+import android.util.Log;
+
 /**
  * Modèle du Shaker qui contient les données utilisées pour le calcul de réussite du niveau
  */
@@ -23,7 +25,10 @@ public class Shaker {
      * obtenir le temps durant lequel le shacker fut secoué
      * @return le temp de secouage en nanosecondes
      */
-    public long getTpsshake() { return tpsshake; }
+    public long getTpsshakeEnSecondes() {
+        Log.d("TempsShake",tpsshake + " : " + tpsshake/(10^9));
+        return tpsshake;
+    }
 
     /**
      * ajoute le timestamp au temps de shake

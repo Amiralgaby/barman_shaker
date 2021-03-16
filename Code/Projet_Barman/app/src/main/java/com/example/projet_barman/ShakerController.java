@@ -3,6 +3,7 @@ package com.example.projet_barman;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -33,30 +34,11 @@ public class ShakerController implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         float value_y = Math.abs(event.values[1]);
         if (value_y >= 1){
-            shacker.ajouteTps(event.timestamp);
-            Log.d("TIMESTAMP","voici le temps "+event.timestamp);
+            shacker.ajouteTps(SystemClock.currentThreadTimeMillis());
+            //Log.d("TIMESTAMP","voici le temps "+event.timestamp);
             shacker.ajouteSecouage(value_y); // augmente la valeur accumuler de secouage du shaker
         }
     }
-
-    /*
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        // pour obtenir la valeur faire event.values[1]
-        Log.d("DONNEESY", "la valeur y : " + event.values[1]);
-        Log.d("Secouage", "Suis-je secoué ? " + secouage);
-        debut = event.timestamp;
-        if ((!secouage) && (event.values[0]<-1 || event.values[0]>1 || event.values[1]<-1 || event.values[1]>1 || event.values[2]<-1 || event.values[2]>1)){
-            Log.d("Secouage", "Je suis secoué !");
-            secouage = true;
-        }
-
-        if (started && (event.values[0]<1 && event.values[0]>-1) && (event.values[1]<1 && event.values[1]>-1) && (event.values[2]<1 && event.values[2]>-1)) {
-            fin = event.timestamp;
-            unregister();
-        }
-    }
-    */
 
     /**
      * Appelée quand la précision du sensor change
@@ -74,6 +56,6 @@ public class ShakerController implements SensorEventListener {
      * @return le temps de secouage en nanosecondes
      */
     public long getTempDeSecouage(){
-        return shacker.getTpsshake();
+        return shacker.getTpsshakeEnSecondes();
     }
 }

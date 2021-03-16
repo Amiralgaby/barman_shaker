@@ -1,10 +1,12 @@
 package modele;
 
+import android.util.Log;
+
 public class Niveau {
     private Shaker shaker;
 
     private int nbMinPts;
-    private long ptsJoueur = 0;
+    private double ptsJoueur = 0;
     private int numNiveau;
     private boolean victoire;
 
@@ -40,11 +42,14 @@ public class Niveau {
      * @param tpsjoueur le temps qu'a réalisé le joueur provenant de PartieController
      */
     public void pts(long tpsjoueur) throws ArithmeticException{
-        ptsJoueur = (tpsjoueur*shaker.getMaxpts())/shaker.getTpsshake();
+        //ptsJoueur = (tpsjoueur*shaker.getMaxpts())/shaker.getTpsshakeEnSecondes(); // si on garde, j'aimerais savoir pourquoi ce calcul
+        ptsJoueur = tpsjoueur*shaker.getSecouageAccumule() / 1000.0;
+        ptsJoueur = Math.round(ptsJoueur);
+        Log.d("DEBUG_TRACE","les pts de joueur sont "+ptsJoueur);
         setVictoire();
     }
 
-    public long getPtsJoueur() {
+    public double getPtsJoueur() {
         return ptsJoueur;
     }
 }

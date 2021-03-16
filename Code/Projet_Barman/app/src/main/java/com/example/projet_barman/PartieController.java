@@ -93,12 +93,14 @@ public class PartieController implements SensorEventListener {
         sensorController.unregister(this);
 
         long ecart_milli = fin - debut;
-        Log.d("SCORE","Vous avez commencé à "+ debut + " et vous avez terminé à "+ fin);
+        //Log.d("SCORE","Vous avez commencé à "+ debut + " et vous avez terminé à "+ fin);
         Log.d("SCORE", "Vous avez secoué durant : " + ecart_milli + " nanosecondes soit "+ecart_milli/(1000.0));
-        listener.updateScore(String.valueOf(calculDuScore(SystemClock.elapsedRealtime()-debut)));
+        double debug_var = calculDuScore(SystemClock.elapsedRealtime()-debut);
+        Log.d("DEBUG_VAR","La variable qui est écrite dans le textview vaut : "+ debug_var);
+        listener.updateScore(String.valueOf(debug_var));
     }
 
-    private long calculDuScore(long ecartMilli) {
+    private double calculDuScore(long ecartMilli) {
         try{
             partieActuelle.getNiveau().pts(ecartMilli);
         }catch (ArithmeticException e)
