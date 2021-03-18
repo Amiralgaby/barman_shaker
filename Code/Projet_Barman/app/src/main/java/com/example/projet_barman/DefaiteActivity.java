@@ -7,20 +7,12 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import modele.FabriqueNiveau;
-import modele.Manager;
-import modele.Niveau;
-import modele.Partie;
 
-public class VictoireActivity extends Activity {
-    Manager manager = Manager.getInstance();
-    Partie partie = manager.getPartieActuelle();
-    Niveau niveau = partie.getNiveau();
-
+public class DefaiteActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_victoire);
+        setContentView(R.layout.page_defaite);
     }
 
     public void Quitter(View view) {
@@ -28,8 +20,7 @@ public class VictoireActivity extends Activity {
         startActivity(intent);
     }
 
-    public void niveauSuivant(View view) {
-        FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
+    public void Recommencer(View view) {
         Intent intent = new Intent(this,JeuActivity.class);
         startActivity(intent);
     }

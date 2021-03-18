@@ -1,22 +1,32 @@
 package com.example.projet_barman;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import modele.Manager;
+import modele.Niveau;
+import modele.Partie;
+import modele.Shaker;
 
 public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListener {
 
     Manager manager = Manager.getInstance();
+    Partie partie=manager.getPartieActuelle();
+    Niveau niveau = partie.getNiveau();
+    Shaker shaker = niveau.getShaker();
 
     private TextView votreTemps;
-
     private TextView votreScore;
+    private TextView Score_a_battre;
+    private TextView Temps_a_faire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +36,12 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
         manager.setJeuActivity(this);
         votreTemps = findViewById(R.id.votre_temps);
         votreScore = findViewById(R.id.votre_score);
+        Score_a_battre = findViewById(R.id.Score_a_battre);
+        Temps_a_faire = findViewById(R.id.Temps_a_faire);
+        Score_a_battre.setText(String.valueOf(niveau.getNbMinPts()));
+        Temps_a_faire.setText(String.valueOf(shaker.getTpsshakeEnSecondes()));
     }
+
 
     public void jouer(View view) {
         manager.lancerLeJeu();
@@ -58,5 +73,17 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
     @Override
     public void updateTemps(String temps) {
         runOnUiThread(() -> votreTemps.setText(temps));
+    }
+
+    @Override
+    public void victoire(){
+        Intent intent = new Intent(this, VictoireActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void defaite(){
+        Intent intent = new Intent(this, DefaiteActivity.class);
+        startActivity(intent);
     }
 }

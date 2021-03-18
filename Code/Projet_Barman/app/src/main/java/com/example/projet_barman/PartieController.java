@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import modele.FabriqueNiveau;
+import modele.Niveau;
 import modele.Partie;
 
 public class PartieController implements SensorEventListener {
@@ -98,6 +99,12 @@ public class PartieController implements SensorEventListener {
         double debug_var = calculDuScore(SystemClock.elapsedRealtime()-debut);
         Log.d("DEBUG_VAR","La variable qui est écrite dans le textview vaut : "+ debug_var);
         listener.updateScore(String.valueOf(debug_var));
+        Niveau niveau=partieActuelle.getNiveau();
+        if(niveau.isVictoire()){
+            listener.victoire();
+        }else{
+            listener.defaite();
+        }
     }
 
     private double calculDuScore(long ecartMilli) {

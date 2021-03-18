@@ -8,15 +8,18 @@ import android.util.Log;
 public class Shaker {
 
     private float secouageAccumule = 0;
-    private long tpsshake = 0;
+    private int numniveau;
+    private long tpsshake;
     private int maxpts;
 
     /**
      * Constructeur du Shaker. 1 shaker par niveau.
      * @param maxpts= maximum de points du shaker si le joueur fait exactement le temps demandé
      */
-    public Shaker(int maxpts) {
+    public Shaker(int maxpts, int numniveau) {
         this.maxpts=maxpts;
+        this.numniveau=numniveau;
+        tpsshake= 2^numniveau;
     }
 
     public int getMaxpts() { return maxpts; }

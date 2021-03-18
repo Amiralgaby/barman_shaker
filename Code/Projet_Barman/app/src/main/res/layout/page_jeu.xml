@@ -17,26 +17,45 @@
 
         <TextView
             android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:background="@drawable/bordure"
             android:gravity="center_vertical"
             android:text="@string/temps_faire"
-            android:textColor="#000000"
-            android:layout_width="wrap_content" />
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/Temps_a_faire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="10h"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginEnd="70dp"
-            android:layout_marginRight="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/bordure"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/score_battre"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/Score_a_battre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="1 point et demi"
             android:textColor="#000000" />
     </LinearLayout>
 
