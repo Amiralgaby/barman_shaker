@@ -39,6 +39,7 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
         Score_a_battre = findViewById(R.id.Score_a_battre);
         Temps_a_faire = findViewById(R.id.Temps_a_faire);
         Score_a_battre.setText(String.valueOf(niveau.getNbMinPts()));
+        System.out.println("Temps: " + shaker.getTpsshakeEnSecondes() + "s et points: "+ shaker.getMaxpts());
         Temps_a_faire.setText(String.valueOf(shaker.getTpsshakeEnSecondes()));
     }
 

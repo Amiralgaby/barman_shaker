@@ -12,6 +12,8 @@ public class Partie {
 
     public Niveau getNiveau() { return niveau; }
 
+    public void setNiveau(Niveau niveau) { this.niveau = niveau; }
+
     /**
      * Méthode qui passe au niveau suivant si le joueur a gagné le niveau actuel.
      * sinon le renvoie au niveau 1

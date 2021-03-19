@@ -29,7 +29,7 @@ public class VictoireActivity extends Activity {
     }
 
     public void niveauSuivant(View view) {
-        FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1);
+        partie.setNiveau(FabriqueNiveau.fabriquer(niveau.getNumNiveau()+1));
         Intent intent = new Intent(this,JeuActivity.class);
         startActivity(intent);
     }

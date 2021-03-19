@@ -12,14 +12,13 @@ public class Niveau {
 
     /**
      * Constructeur du niveau, une partie peut voir se succéder plusieurs niveaux.
-     * @param nbMinPts= Nombre de points minimum resuiq pour passer au niveau suivant
      * @param numNiveau=Numéro du niveau actuel
      * @param shaker=Shaker du niveau actuel
      */
-    public Niveau(int nbMinPts, int numNiveau, Shaker shaker) {
-        this.nbMinPts = nbMinPts;
+    public Niveau(int numNiveau, Shaker shaker) {
         this.numNiveau = numNiveau;
         this.shaker = shaker;
+        this.nbMinPts= (int) Math.round(shaker.getMaxpts()*0.85);
         victoire = false;
     }
 
@@ -42,8 +41,9 @@ public class Niveau {
      * @param tpsjoueur le temps qu'a réalisé le joueur provenant de PartieController
      */
     public void pts(long tpsjoueur) throws ArithmeticException{
-        //ptsJoueur = (tpsjoueur*shaker.getMaxpts())/shaker.getTpsshakeEnSecondes(); // si on garde, j'aimerais savoir pourquoi ce calcul
-        ptsJoueur = tpsjoueur*shaker.getSecouageAccumule() / 1000.0;
+        //ptsJoueur = (shaker.getSecouageAccumule()*shaker.getMaxpts())/shaker.getTpsshakeEnSecondes(); // si on garde, j'aimerais savoir pourquoi ce calcul
+        System.out.println("Le score max en * 0.8 donne: "+ shaker.getMaxpts()*(Math.pow(0.8,numNiveau)));
+        ptsJoueur = tpsjoueur*shaker.getSecouageAccumule() + shaker.getMaxpts()*(Math.pow(0.8,numNiveau));
         ptsJoueur = Math.round(ptsJoueur);
         Log.d("DEBUG_TRACE","les pts de joueur sont "+ptsJoueur);
         setVictoire();
