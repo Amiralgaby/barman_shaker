@@ -1,9 +1,12 @@
 package com.example.projet_barman;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -24,6 +27,14 @@ public class VictoireActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_victoire);
+        if (savedInstanceState == null)
+        {
+            Bundle bundle = getIntent().getExtras();
+            CharSequence sequence = bundle.getCharSequence("SCORE");
+            TextView score = findViewById(R.id.textView7);
+            score.setText(String.format("Vous avez gagné avec %s points", sequence));
+            Log.d("DEBUG_BUNDLE","Voici la récupération du score via le Bundle : "+sequence);
+        }
     }
 
     /**

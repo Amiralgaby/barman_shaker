@@ -1,11 +1,9 @@
 package com.example.projet_barman;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,8 +26,8 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
 
     private TextView votreTemps;
     private TextView votreScore;
-    private TextView Score_a_battre;
-    private TextView Temps_a_faire;
+    private TextView scoreABattre;
+    private TextView tempsAFaire;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +37,11 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
         manager.setJeuActivity(this);
         votreTemps = findViewById(R.id.votre_temps);
         votreScore = findViewById(R.id.votre_score);
-        Score_a_battre = findViewById(R.id.Score_a_battre);
-        Temps_a_faire = findViewById(R.id.Temps_a_faire);
-        Score_a_battre.setText(String.valueOf(niveau.getNbMinPts()));
+        scoreABattre = findViewById(R.id.Score_a_battre);
+        tempsAFaire = findViewById(R.id.Temps_a_faire);
+        scoreABattre.setText(String.valueOf(niveau.getNbMinPts()));
         System.out.println("Temps: " + shaker.getTpsshakeEnSecondes() + "s et points: "+ shaker.getMaxpts());
-        Temps_a_faire.setText(String.valueOf(shaker.getTpsshakeEnSecondes()));
+        tempsAFaire.setText(String.valueOf(shaker.getTpsshakeEnSecondes()));
     }
 
     /**
@@ -88,6 +86,7 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
     @Override
     public void victoire(){
         Intent intent = new Intent(this, VictoireActivity.class);
+        intent.putExtra("SCORE",votreScore.getText());
         startActivity(intent);
     }
 
@@ -97,6 +96,7 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
     @Override
     public void defaite(){
         Intent intent = new Intent(this, DefaiteActivity.class);
+        intent.putExtra("SCORE",votreScore.getText());
         startActivity(intent);
     }
 }
