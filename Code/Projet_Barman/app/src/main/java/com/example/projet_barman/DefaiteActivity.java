@@ -12,7 +12,9 @@ import modele.Manager;
 import modele.Niveau;
 import modele.Partie;
 
-
+/**
+ * Activité de défaite
+ */
 public class DefaiteActivity extends Activity {
     Manager manager = Manager.getInstance();
     Partie partie = manager.getPartieActuelle();
@@ -24,11 +26,19 @@ public class DefaiteActivity extends Activity {
         setContentView(R.layout.page_defaite);
     }
 
+    /**
+     * Quit le jeu et fait revenir au menu principal
+     * @param view inutilisée
+     */
     public void Quitter(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Récupére le niveau actuelle et recommence une activité de jeu
+     * @param view inutilisée
+     */
     public void Recommencer(View view) {
         partie.setNiveau(FabriqueNiveau.fabriquer(niveau.getNumNiveau()));
         Intent intent = new Intent(this,JeuActivity.class);

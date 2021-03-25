@@ -31,9 +31,7 @@ public class Niveau {
      * Méthode qui est appelé après le calcul des points. Déclare la victoire ou non du joueur.
      */
     public void setVictoire(){
-        Partie partie=Manager.getInstance().getPartieActuelle();
         victoire = (ptsJoueur>nbMinPts);
-        partie.continuerAJouer();
     }
 
     /**

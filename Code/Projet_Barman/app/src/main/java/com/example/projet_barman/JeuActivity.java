@@ -16,6 +16,9 @@ import modele.Niveau;
 import modele.Partie;
 import modele.Shaker;
 
+/**
+ * Activité du jeu
+ */
 public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListener {
 
     Manager manager = Manager.getInstance();
@@ -43,7 +46,10 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
         Temps_a_faire.setText(String.valueOf(shaker.getTpsshakeEnSecondes()));
     }
 
-
+    /**
+     * Lance le jeu
+     * @param view inutilisée
+     */
     public void jouer(View view) {
         manager.lancerLeJeu();
     }
@@ -76,12 +82,18 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
         runOnUiThread(() -> votreTemps.setText(temps));
     }
 
+    /**
+     * Demande l'activité victoire et la lance
+     */
     @Override
     public void victoire(){
         Intent intent = new Intent(this, VictoireActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Demande l'activité défaite et la lance
+     */
     @Override
     public void defaite(){
         Intent intent = new Intent(this, DefaiteActivity.class);

@@ -13,6 +13,9 @@ import modele.FabriqueNiveau;
 import modele.Niveau;
 import modele.Partie;
 
+/**
+ * Classe qui contrôle la partie
+ */
 public class PartieController implements SensorEventListener {
 
     private SensorController sensorController;
@@ -29,6 +32,11 @@ public class PartieController implements SensorEventListener {
         partieActuelle = new Partie(FabriqueNiveau.fabriquer(1));
     }
 
+    /**
+     * Lance l'enregistrement du sensor et lance un thread qui attend un certain nombre de secondes
+     * avant de finir la partie automatiquement
+     * @param sensorManager le sensor manager qui permet de connaître les sensors
+     */
     public void run(@NonNull SensorManager sensorManager)
     {
         debut = 0; // si on veut retenter alors le debut doit être forcément null comme à son initialisation
@@ -94,12 +102,12 @@ public class PartieController implements SensorEventListener {
         sensorController.unregister(this);
 
         long ecart_milli = fin - debut;
-        //Log.d("SCORE","Vous avez commencé à "+ debut + " et vous avez terminé à "+ fin);
         Log.d("SCORE", "Vous avez secoué durant : " + ecart_milli + " nanosecondes soit "+ecart_milli/(1000.0));
-        double debug_var = calculDuScore(SystemClock.elapsedRealtime()-debut);
-        Log.d("DEBUG_VAR","La variable qui est écrite dans le textview vaut : "+ debug_var);
-        listener.updateScore(String.valueOf(debug_var));
+        double score = calculDuScore(SystemClock.elapsedRealtime()-debut);
+        Log.d("DEBUG_VAR","La variable qui est écrite dans le textview vaut : "+ score);
+        listener.updateScore(String.valueOf(score));
         Niveau niveau=partieActuelle.getNiveau();
+        // appelle le listener qui est l'activité JeuActivity et lui demande de communiquer avec les autres vu (Victoire et Défaite)
         if(niveau.isVictoire()){
             listener.victoire();
         }else{
@@ -117,6 +125,11 @@ public class PartieController implements SensorEventListener {
         return partieActuelle.getNiveau().getPtsJoueur();
     }
 
+    /**
+     * appeler quand la précision change
+     * @param sensor le sensor sur lequel la précision change
+     * @param accuracy la nouvelle valeur de précision
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // do nothing
