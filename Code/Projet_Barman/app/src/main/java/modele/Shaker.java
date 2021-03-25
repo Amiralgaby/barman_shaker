@@ -17,9 +17,10 @@ public class Shaker {
      * @param maxpts= maximum de points du shaker si le joueur fait exactement le temps demandé
      */
     public Shaker(int maxpts, int numniveau) {
+        System.out.println("Maximum points dans le shaker: "+ maxpts + " Numéro niveau dans le shaker: " + numniveau);
         this.maxpts=maxpts;
         this.numniveau=numniveau;
-        tpsshake= 2^numniveau;
+        tpsshake= (long) Math.pow(2,numniveau);
     }
 
     public int getMaxpts() { return maxpts; }

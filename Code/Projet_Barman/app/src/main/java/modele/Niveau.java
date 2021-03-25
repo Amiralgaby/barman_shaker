@@ -43,7 +43,10 @@ public class Niveau {
     public void pts(long tpsjoueur) throws ArithmeticException{
         //ptsJoueur = (shaker.getSecouageAccumule()*shaker.getMaxpts())/shaker.getTpsshakeEnSecondes(); // si on garde, j'aimerais savoir pourquoi ce calcul
         System.out.println("Le score max en * 0.8 donne: "+ shaker.getMaxpts()*(Math.pow(0.8,numNiveau)));
-        ptsJoueur = tpsjoueur*shaker.getSecouageAccumule() + shaker.getMaxpts()*(Math.pow(0.8,numNiveau));
+
+        int tpscalcul = (int) Math.abs(shaker.getTpsshakeEnSecondes()-tpsjoueur);
+        ptsJoueur = shaker.getMaxpts()-(tpscalcul*shaker.getMaxpts()/shaker.getTpsshakeEnSecondes())+shaker.getMaxpts()*(Math.pow(0.5,numNiveau));
+        //ptsJoueur = tpsjoueur*shaker.getSecouageAccumule() + shaker.getMaxpts()*(Math.pow(0.8,numNiveau));
         ptsJoueur = Math.round(ptsJoueur);
         Log.d("DEBUG_TRACE","les pts de joueur sont "+ptsJoueur);
         setVictoire();
