@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -23,14 +24,16 @@ public class DefaiteActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.page_defaite);
         if (savedInstanceState == null)
         {
             Bundle bundle = getIntent().getExtras();
             CharSequence sequence = bundle.getCharSequence("SCORE");
+            TextView score = findViewById(R.id.textView3);
+            score.setText(String.format("Vous avez perdu avec %s points", sequence));
             Log.d("DEBUG_BUNDLE","Voici la récupération du score via le Bundle : "+sequence);
         }
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.page_defaite);
     }
 
     /**

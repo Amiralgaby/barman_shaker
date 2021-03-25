@@ -1,14 +1,11 @@
 package modele;
 
-import android.util.Log;
-
 /**
  * Modèle du Shaker qui contient les données utilisées pour le calcul de réussite du niveau
  */
 public class Shaker {
 
     private float secouageAccumule = 0;
-    private int numniveau;
     private long tpsshake;
     private int maxpts;
 
@@ -19,8 +16,7 @@ public class Shaker {
     public Shaker(int maxpts, int numniveau) {
         System.out.println("Maximum points dans le shaker: "+ maxpts + " Numéro niveau dans le shaker: " + numniveau);
         this.maxpts=maxpts;
-        this.numniveau=numniveau;
-        tpsshake= (long) Math.pow(2,numniveau);
+        tpsshake= 0;//(long) Math.pow(2,numniveau);
     }
 
     public int getMaxpts() { return maxpts; }
@@ -30,7 +26,6 @@ public class Shaker {
      * @return le temp de secouage en nanosecondes
      */
     public long getTpsshakeEnSecondes() {
-        Log.d("TempsShake",tpsshake + " : " + tpsshake/(10^9));
         return tpsshake;
     }
 
