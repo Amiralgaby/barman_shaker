@@ -74,6 +74,8 @@ public class PartieController implements SensorEventListener {
         return partieActuelle;
     }
 
+    public void setPartieActuelle(Partie partieActuelle) { this.partieActuelle = partieActuelle; }
+
     /**
      * Permet de prendre le temps de la partie selon le temps maximal de secouage
      * @param event l'envent à partir duquel on obtient le temps

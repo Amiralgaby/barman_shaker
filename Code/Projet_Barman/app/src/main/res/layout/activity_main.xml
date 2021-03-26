@@ -51,16 +51,18 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="76dp"
                 android:text="@string/charger_une_partie"
+                android:onClick="Charger"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 app:backgroundTint="#00BCD4" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/effacer_sauvegarde"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="76dp"
                 android:text="@string/effacer_une_partie"
+                android:onClick="SupprimerSauvegarde"
                 android:textColor="#000000"
                 android:textColorHint="#FFFFFF"
                 app:backgroundTint="#00BCD4" />

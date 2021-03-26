@@ -27,6 +27,8 @@ public class Manager {
         return INSTANCE;
     }
 
+    public PartieController getPartieController() { return partieController; }
+
     public Partie getPartieActuelle() { return partieController.getPartieActuelle(); }
 
     public void lancerLeJeu()

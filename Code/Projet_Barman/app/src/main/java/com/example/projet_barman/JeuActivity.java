@@ -9,6 +9,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import modele.Manager;
 import modele.Niveau;
 import modele.Partie;
@@ -97,6 +102,21 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
     public void defaite(){
         Intent intent = new Intent(this, DefaiteActivity.class);
         intent.putExtra("SCORE",votreScore.getText());
+        startActivity(intent);
+    }
+
+    public void Sauvegarder(View view) throws IOException {
+        File f = getFilesDir();
+        File fichiersauvegarde= new File(f,"Partie.ser");
+        if(fichiersauvegarde.exists()){
+            fichiersauvegarde.delete();
+        }
+
+        FileOutputStream sauvegarde = new FileOutputStream(fichiersauvegarde);
+        ObjectOutputStream oos = new ObjectOutputStream(sauvegarde);
+        partie.serialiser(oos);
+        oos.close();
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

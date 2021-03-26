@@ -2,10 +2,12 @@ package modele;
 
 import android.util.Log;
 
+import java.io.Serializable;
+
 /**
  * La classe niveau gère les points minimum, les points du joueur, le shaker utilisé, la condition de victoire
  */
-public class Niveau {
+public class Niveau implements Serializable {
     private Shaker shaker;
 
     private int nbMinPts;

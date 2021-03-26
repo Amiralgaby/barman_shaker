@@ -1,9 +1,11 @@
 package modele;
 
+import java.io.Serializable;
+
 /**
  * Modèle du Shaker qui contient les données utilisées pour le calcul de réussite du niveau
  */
-public class Shaker {
+public class Shaker implements Serializable {
 
     private float secouageAccumule = 0;
     private long tpsshake;
@@ -16,7 +18,7 @@ public class Shaker {
     public Shaker(int maxpts, int numniveau) {
         System.out.println("Maximum points dans le shaker: "+ maxpts + " Numéro niveau dans le shaker: " + numniveau);
         this.maxpts=maxpts;
-        tpsshake= 0;//(long) Math.pow(2,numniveau);
+        tpsshake= (long) ( (2+numniveau) + Math.random()*(10-5));
     }
 
     public int getMaxpts() { return maxpts; }
