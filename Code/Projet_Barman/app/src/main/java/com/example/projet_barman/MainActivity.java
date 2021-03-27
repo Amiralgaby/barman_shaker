@@ -26,11 +26,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Démarre la vue de jeu
+     * @param view inutilisée
+     */
     public void demarrer(View view) {
         Intent intent = new Intent(this,JeuActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Charge une partie dans l'application
+     * @param view inutilisée
+     * @throws ClassNotFoundException lance une exception si la classe sérialisée n'est pas trouvée
+     */
     public void Charger(View view) throws ClassNotFoundException {
         try {
             File f= getFilesDir();
@@ -47,7 +56,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Supprime la sauvegarde de partie
+     * @param view inutilisée
+     */
     public void SupprimerSauvegarde(View view) {
         File f= getFilesDir();
         File fichiersauvegarde = new File(f,"Partie.ser");
