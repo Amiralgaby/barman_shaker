@@ -49,14 +49,4 @@ public class SensorController {
            registered = false;
            tempPasseARegister = debutRegister - SystemClock.elapsedRealtime();
     }
-
-    public boolean getRegistered() { return registered; }
-
-    public long getDebutRegister() {
-        return debutRegister;
-    }
-
-    public long getTempPasseARegister() {
-        return tempPasseARegister;
-    }
 }
