@@ -40,7 +40,7 @@ public class DefaiteActivity extends Activity {
      * Quit le jeu et fait revenir au menu principal
      * @param view inutilisée
      */
-    public void Quitter(View view) {
+    public void quitter(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
@@ -49,7 +49,7 @@ public class DefaiteActivity extends Activity {
      * Récupére le niveau actuelle et recommence une activité de jeu
      * @param view inutilisée
      */
-    public void Recommencer(View view) {
+    public void recommencer(View view) {
         partie.setNiveau(FabriqueNiveau.fabriquer(niveau.getNumNiveau()));
         Intent intent = new Intent(this,JeuActivity.class);
         startActivity(intent);

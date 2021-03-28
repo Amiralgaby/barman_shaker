@@ -40,7 +40,7 @@ public class VictoireActivity extends Activity {
      * Quit le jeu et fait revenir au menu principal
      * @param view inutilisée
      */
-    public void Quitter(View view) {
+    public void quitter(View view) {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

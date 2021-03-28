@@ -51,7 +51,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="76dp"
                 android:text="@string/charger_une_partie"
-                android:onClick="Charger"
+                android:onClick="charger"
                 android:textColor="#000000"
                 android:textColorHint="#000000"
                 app:backgroundTint="#00BCD4" />
@@ -62,7 +62,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="76dp"
                 android:text="@string/effacer_une_partie"
-                android:onClick="SupprimerSauvegarde"
+                android:onClick="supprimerSauvegarde"
                 android:textColor="#000000"
                 android:textColorHint="#FFFFFF"
                 app:backgroundTint="#00BCD4" />

@@ -110,7 +110,7 @@ public class JeuActivity extends AppCompatActivity implements OnGameUpdatedListe
      * @param view inutilisée
      * @throws IOException lance une exception si il y a une erreur d'entrée-sortie
      */
-    public void Sauvegarder(View view) throws IOException {
+    public void sauvegarder(View view) throws IOException {
         File f = getFilesDir();
         File fichiersauvegarde= new File(f,"Partie.ser");
         if(fichiersauvegarde.exists()){

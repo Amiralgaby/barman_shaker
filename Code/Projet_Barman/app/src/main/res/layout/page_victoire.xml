@@ -43,7 +43,7 @@
         android:layout_marginTop="60dp"
         android:text="@string/quitter"
         android:textColor="#000000"
-        android:onClick="Quitter"
+        android:onClick="quitter"
         app:backgroundTint="#00BCD4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

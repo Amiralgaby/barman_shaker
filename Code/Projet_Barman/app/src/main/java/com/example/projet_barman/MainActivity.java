@@ -2,6 +2,7 @@ package com.example.projet_barman;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view inutilisée
      * @throws ClassNotFoundException lance une exception si la classe sérialisée n'est pas trouvée
      */
-    public void Charger(View view) throws ClassNotFoundException {
+    public void charger(View view) throws ClassNotFoundException {
         try {
             File f= getFilesDir();
             File fichiersauvegarde = new File(f,"Partie.ser");
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, JeuActivity.class);
             startActivity(intent);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("ERROR","Le chargement n'a pas pu réussir : "+e.getMessage());
         }
     }
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
      * Supprime la sauvegarde de partie
      * @param view inutilisée
      */
-    public void SupprimerSauvegarde(View view) {
+    public void supprimerSauvegarde(View view) {
         File f= getFilesDir();
         File fichiersauvegarde = new File(f,"Partie.ser");
         fichiersauvegarde.delete();

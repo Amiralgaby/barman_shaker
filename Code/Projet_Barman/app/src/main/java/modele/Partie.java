@@ -28,8 +28,7 @@ public class Partie implements Serializable {
     }
 
     public Partie deserialiser(ObjectInputStream ois) throws IOException, ClassNotFoundException {
-        Partie p=(Partie)ois.readObject();
-        return p;
+        return (Partie) ois.readObject();
     }
 
 }
