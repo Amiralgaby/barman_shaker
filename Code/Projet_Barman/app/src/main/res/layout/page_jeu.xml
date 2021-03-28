@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bordure">
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="center_horizontal|center_vertical"
-            android:hint="10h"
+            android:hint="@string/_10h"
             android:textColor="#000000" />
 
         <TextView
@@ -56,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="1 point et demi"
+            android:hint="@string/_1_point_et_demi"
             android:textColor="#000000" />
     </LinearLayout>
 
