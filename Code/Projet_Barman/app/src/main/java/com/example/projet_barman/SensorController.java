@@ -12,7 +12,6 @@ import android.util.Log;
 public class SensorController {
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
-    private boolean registered=false;
     private long debutRegister;
     private long tempPasseARegister = 0;
 
@@ -37,7 +36,7 @@ public class SensorController {
      */
     public boolean register(SensorEventListener sensorEventListener) {
         debutRegister = SystemClock.elapsedRealtime();
-        return registered = mSensorManager.registerListener(sensorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+        return mSensorManager.registerListener(sensorEventListener, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
@@ -46,7 +45,6 @@ public class SensorController {
      */
     public void unregister(SensorEventListener sensorEventListener) {
            mSensorManager.unregisterListener(sensorEventListener);
-           registered = false;
            tempPasseARegister = debutRegister - SystemClock.elapsedRealtime();
     }
 }
