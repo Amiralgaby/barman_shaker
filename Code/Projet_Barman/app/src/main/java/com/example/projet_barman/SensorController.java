@@ -32,7 +32,8 @@ public class SensorController {
     }
 
     /**
-     * Ajoute this en tant que listener de l'accélèromètre via le manager de sensor
+     * Ajoute le sensorEventListener en tant que listener de l'accélèromètre via le manager de sensor
+     * @param sensorEventListener ajoute le sensorEventListener au listener du sensor
      */
     public boolean register(SensorEventListener sensorEventListener) {
         debutRegister = SystemClock.elapsedRealtime();
@@ -40,7 +41,8 @@ public class SensorController {
     }
 
     /**
-     * Retire le listener this du manager de sensor
+     * Retire le listener sensorEventListener du manager de sensor
+     * @param sensorEventListener le sensorEventListener qui sera rajouté
      */
     public void unregister(SensorEventListener sensorEventListener) {
            mSensorManager.unregisterListener(sensorEventListener);
