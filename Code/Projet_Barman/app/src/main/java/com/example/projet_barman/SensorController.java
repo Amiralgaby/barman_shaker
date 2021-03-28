@@ -13,7 +13,6 @@ public class SensorController {
     private final SensorManager mSensorManager;
     private final Sensor mAccelerometer;
     private long debutRegister;
-    private long tempPasseARegister = 0;
 
     /**
      * Créer une instance de SensorController qui gère les listeners du sensor
